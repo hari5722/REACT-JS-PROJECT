@@ -40,7 +40,7 @@ export default function Carousel() {
   return (
     <Swiper
       modules={[Autoplay]}
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 2000 }}
       loop={true}
       className="mySwiper"
     >
@@ -50,7 +50,7 @@ export default function Carousel() {
             <div className="max-w-md">
               <h2 className="text-3xl font-bold mb-4">{slide.title}</h2>
               <p className="text-gray-600 mb-4">{slide.desc}</p>
-              <button className="text-black-600 border  hover:text-grey-800">Visit Collections</button>
+              <button className="text-black-600  hover:text-grey-800">Visit Collections</button>
             </div>
             <img src={slide.cover} alt="Slide" className="w-[400px] h-120 "/>
           </div>
