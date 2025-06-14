@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { globalContext } from "../context/MyContext";
 import { LuCirclePlus } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 export default function NewArrivals() {
   const { data } = useContext(globalContext);
-  
+
   const filter = data.filter(
     (item) => item.category === "sofa" || item.category === "watch"
   );
@@ -17,19 +18,21 @@ export default function NewArrivals() {
           <div
             key={item.id}
             className="bg-white p-4 rounded-xl shadow hover:shadow-lg transform transition duration-200 hover:-translate-y-2">
-            <img
+          <Link to={`/product/${item.id}`}>
+           <img
               src={item.imgUrl}
               alt={item.productName}
               className="w-full h-70 object-fit mb-4"
-            />
+            /></Link>
             <h3 className="text-sm font-semibold">{item.productName}</h3>
             <div className="flex items-center text-yellow-500 my-2">
               <p>⭐⭐⭐⭐⭐</p>
             </div>
             <div className="flex justify-between items-center">
               <p className="font-bold">${item.price}</p>
-              <LuCirclePlus className="text-2xl cursor-pointer hover:text-gray-700" />
-            </div>
+              <div className="flex justify-end">
+                <LuCirclePlus className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg" />
+              </div>            </div>
           </div>
         ))}
       </div>
