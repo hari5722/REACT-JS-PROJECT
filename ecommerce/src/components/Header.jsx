@@ -20,7 +20,7 @@ export default function Header() {
             <IoMdContact />
           </span>
           <div className="relative">
-            <ImCart className="text-3xl hover:text-black-600 cursor-pointer" />            
+           <Link to={"/cart"}> <ImCart className="text-3xl hover:text-black-600 cursor-pointer text-black" />  </Link>          
           </div>
         </div>
       </nav>

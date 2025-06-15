@@ -44,14 +44,13 @@ export default function ProductDetalis() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 items-center">
-        <Link to="/BestSales">
+        {/* <Link to="/BestSales"> */}
           <img
             src={product.imgUrl}
             alt={product.productName}
             className="w-full max-w-md mx-auto hover:scale-105 duration-300"
           />
-        </Link>
-
+        {/* </Link> */}
         <div>
           <h2 className="text-2xl font-semibold">{product.productName}</h2>
           <div className="flex items-center gap-2 text-yellow-400">

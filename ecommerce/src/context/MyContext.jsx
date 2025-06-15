@@ -8,6 +8,7 @@ export default function MyContext({ children }) {
   const [discountData, setDiscountData] = useState([]);
   const [cart, setCart] = useState([]);
 
+
   const fetchData = () => {
     setData(products);
     setDiscountData(discoutProducts);
@@ -22,7 +23,7 @@ export default function MyContext({ children }) {
   };
 
   return (
-    <globalContext.Provider value={{ data, discountData, cart, addToCart }}>
+    <globalContext.Provider value={{ data, discountData, cart, addToCart,cart,setCart }}>
       {children}
     </globalContext.Provider>
   );
