@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function Cart() {
   return (
-    <div>Cart</div>
+    <div>
+      <h1>cart</h1>
+    </div>
   )
 }

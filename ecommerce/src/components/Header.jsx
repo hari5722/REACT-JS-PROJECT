@@ -15,7 +15,7 @@ export default function Header() {
         <div className="flex items-center space-x-6 text-base font-medium">
           <span className="hover:text-black-900 cursor-pointer text-2xl"><Link to="/" className='text-black text-decoration-none'>Home</Link></span>
           <span className="hover:text-black-600 cursor-pointer text-2xl"><Link to="/Shoppage" className=' text-black text-decoration-none'>Shop</Link></span>
-          <span className="hover:text-black-600 cursor-pointer text-2xl">Cart</span>
+          <span className="hover:text-black-600 cursor-pointer text-2xl"><Link to='/cart' className='text-black text-decoration-none' >Cart </Link></span>
           <span className="hover:text-black-600 cursor-pointer text-3xl">
             <IoMdContact />
           </span>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { globalContext } from "../context/MyContext";
 import { LuCirclePlus } from "react-icons/lu";
+import { Link } from "react-router-dom";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 

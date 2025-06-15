@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { globalContext } from '../context/MyContext';
-import bannerImage from '../images/table.jpg';
+import React, { useState, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
+import { globalContext } from "../context/MyContext";
+import bannerImage from "../images/table.jpg";
+import { LuCirclePlus } from "react-icons/lu";
 
 export default function ProductDetalis() {
   const { discountData, data } = useContext(globalContext);
@@ -12,7 +13,9 @@ export default function ProductDetalis() {
   const product = allProducts.find((item) => String(item.id) === String(id));
 
   if (!discountData?.length && !data?.length) {
-    return <p className="text-center mt-20 text-gray-500">Loading product data...</p>;
+    return (
+      <p className="text-center mt-20 text-gray-500">Loading product data...</p>
+    );
   }
 
   if (!product) {
@@ -46,12 +49,16 @@ export default function ProductDetalis() {
           <h2 className="text-2xl font-semibold">{product.productName}</h2>
           <div className="flex items-center gap-2 text-yellow-400">
             <span>⭐⭐⭐⭐⭐</span>
-            <span className="text-gray-700 ml-2">{product.avgRating} ratings</span>
+            <span className="text-gray-700 ml-2">
+              {product.avgRating} ratings
+            </span>
           </div>
 
           <div className="flex flex-wrap mt-2 gap-4">
             <p className="text-2xl font-bold">${product.price}</p>
-            <p className="text-lg text-gray-500">Category: {product.category}</p>
+            <p className="text-lg text-gray-500">
+              Category: {product.category}
+            </p>
           </div>
 
           <p className="text-gray-600 mt-4">{product.shortDesc}</p>
@@ -61,11 +68,12 @@ export default function ProductDetalis() {
               type="number"
               defaultValue={1}
               min={1}
-              className="w-16 border rounded px-2 py-1"/>
-              <div className='mt-3'>
-            <button className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800">
-              Add To Cart
-            </button>
+              className="w-16 border rounded px-2 py-1"
+            />
+            <div className="mt-3">
+              <button className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800">
+                Add To Cart
+              </button>
             </div>
           </div>
         </div>
@@ -76,17 +84,21 @@ export default function ProductDetalis() {
           <h3 className="text-lg font-semibold">Description</h3>
           <button
             onClick={() => setShowReviews(!showReviews)}
-            className="ml-4 text-black-600 p-3 ">
-            {showReviews ? '' : ''} Reviews(2)
+            className="ml-4 text-black-600 p-3 "
+          >
+            {showReviews ? "" : ""} Reviews(2)
           </button>
         </div>
         <p className="text-black-500 font-bold">{product.description}</p>
         {showReviews && (
           <div className=" text-black-600">
-            <p  className='text-yellow-500 font-bold'>Hari</p>
-            <p>{product.rating} 4.6</p>
-            <p>{product.text}Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <p className='text-yellow-500 font-bold'>Krishna</p>
+            <p className="text-yellow-500 font-bold">Hari</p>
+            <p>{id.rating}4.6 </p>
+            <p>
+              {id.text}Lorem ipsum dolor sit amet consectetur adipisicing
+
+            </p>
+            <p className="text-yellow-500 font-bold">Krishna</p>
             <p>4.9</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
@@ -105,18 +117,24 @@ export default function ProductDetalis() {
             .map((item) => (
               <div
                 key={item.id}
-                className="border p-4 rounded shadow hover:shadow-lg transition">
+                className="border p-4 rounded shadow hover:shadow-lg transition"
+              >
                 <Link to={`/product/${item.id}`}>
                   <img
                     src={item.imgUrl}
                     alt={item.productName}
-                    className="w-full h-40 object-contain mb-3"/> 
-                    </Link>
-                  <h4 className="font-medium">{item.productName}</h4>
-                  <div className="flex items-center text-yellow-400 my-1">
-                    <span>⭐⭐⭐⭐⭐</span>
-                  </div>
-                  <p className="font-bold">${item.price}</p>
+                    className="w-full h-40 object-contain mb-3"
+                  />
+                </Link>
+                <h4 className="font-medium">{item.productName}</h4>
+                <div className="flex items-center text-yellow-400 my-1">
+                  <span>⭐⭐⭐⭐⭐</span>
+                </div>
+                <p className="font-bold">${item.price}</p>
+
+                <div className="flex justify-end">
+                  <LuCirclePlus className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg" />
+                </div>
               </div>
             ))}
         </div>
