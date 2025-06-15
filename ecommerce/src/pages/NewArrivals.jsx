@@ -1,18 +1,24 @@
 import React, { useContext, useState } from "react";
 import { globalContext } from "../context/MyContext";
 import { LuCirclePlus } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 
 export default function NewArrivals() {
-  const { data } = useContext(globalContext);
+  const { data, addToCart } = useContext(globalContext);
   const [likedItems, setLikedItems] = useState([]);
+  const navigate = useNavigate();
 
   const toggleLike = (id) => {
     setLikedItems((prev) =>
       prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
     );
+  };
+
+  const handleAddToCart = (item) => {
+    addToCart(item); 
+    navigate("/cart"); 
   };
 
   const filter = data.filter(
@@ -55,7 +61,10 @@ export default function NewArrivals() {
               <p className="text-black font-bold text-left">${item.price}</p>
 
               <div className="flex justify-end mt-2">
-                <LuCirclePlus className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg" />
+                <LuCirclePlus
+                  onClick={() => handleAddToCart(item)}
+                  className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                />
               </div>
             </div>
           ))}

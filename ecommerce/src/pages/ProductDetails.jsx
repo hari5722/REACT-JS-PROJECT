@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { globalContext } from "../context/MyContext";
 import bannerImage from "../images/table.jpg";
 import { LuCirclePlus } from "react-icons/lu";
 
 export default function ProductDetalis() {
-  const { discountData, data } = useContext(globalContext);
+  const { discountData, data, addToCart } = useContext(globalContext);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [showReviews, setShowReviews] = useState(false);
 
   const allProducts = [...(discountData || []), ...(data || [])];
@@ -21,6 +22,12 @@ export default function ProductDetalis() {
   if (!product) {
     return <p className="text-center mt-20 text-red-500">Product not found.</p>;
   }
+
+  const handleAddToCart = () => {
+    addToCart(product);         
+    navigate("/cart");          
+  };
+
   return (
     <div className="px-4 md:px-20 py-8">
       <div className="relative w-full h-60">
@@ -71,7 +78,10 @@ export default function ProductDetalis() {
               className="w-16 border rounded px-2 py-1"
             />
             <div className="mt-3">
-              <button className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800">
+              <button
+                onClick={handleAddToCart} 
+                className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800"
+              >
                 Add To Cart
               </button>
             </div>
@@ -84,20 +94,17 @@ export default function ProductDetalis() {
           <h3 className="text-lg font-semibold">Description</h3>
           <button
             onClick={() => setShowReviews(!showReviews)}
-            className="ml-4 text-black-600 p-3 "
+            className="ml-4 text-black-600 p-3"
           >
-            {showReviews ? "" : ""} Reviews(2)
+            Reviews(2)
           </button>
         </div>
         <p className="text-black-500 font-bold">{product.description}</p>
         {showReviews && (
-          <div className=" text-black-600">
+          <div className="text-black-600">
             <p className="text-yellow-500 font-bold">Hari</p>
-            <p>{id.rating}4.6 </p>
-            <p>
-              {id.text}Lorem ipsum dolor sit amet consectetur adipisicing
-
-            </p>
+            <p>4.6</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             <p className="text-yellow-500 font-bold">Krishna</p>
             <p>4.9</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -105,7 +112,7 @@ export default function ProductDetalis() {
         )}
       </div>
 
-      <div className="p-35 ">
+      <div className="p-35">
         <h2 className="text-xl font-bold mb-6">You might also like</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-10">
           {allProducts
@@ -133,7 +140,13 @@ export default function ProductDetalis() {
                 <p className="font-bold">${item.price}</p>
 
                 <div className="flex justify-end">
-                  <LuCirclePlus className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg" />
+                  <LuCirclePlus
+                    onClick={() => {
+                      addToCart(item);      
+                      navigate("/cart");  
+                    }}
+                    className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                  />
                 </div>
               </div>
             ))}

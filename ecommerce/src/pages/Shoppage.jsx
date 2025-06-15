@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 import { globalContext } from "../context/MyContext";
 import { LuCirclePlus } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 
 export default function Shoppage() {
-  const { data } = useContext(globalContext);
+  const { data, addToCart } = useContext(globalContext);
+  const navigate = useNavigate(); 
+
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [likedItems, setLikedItems] = useState([]);
@@ -16,6 +18,11 @@ export default function Shoppage() {
       prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
     );
   };
+
+  const handleAddToCart = (item) => {
+    addToCart(item);         
+    navigate("/cart");       
+    };
 
   const filteredProducts = (data || []).filter((product) => {
     const matchCategory = filter === "all" || product.category === filter;
@@ -37,10 +44,12 @@ export default function Shoppage() {
           Product
         </h1>
       </div>
+
       <div className="flex flex-wrap justify-between items-center mt-30 mb-20 gap-4 px-5 ">
         <select
           onChange={(e) => setFilter(e.target.value)}
-          className="p-2 border rounded-md hover:bg-blue-800 hover:text-white bg-blue-600 text-white">
+          className="p-2 border rounded-md hover:bg-blue-800 hover:text-white bg-blue-600 text-white"
+        >
           <option value="all">Filter By Category</option>
           <option value="sofa">Sofa</option>
           <option value="chair">Chair</option>
@@ -103,8 +112,12 @@ export default function Shoppage() {
             <h2 className="font-bold mb-2">{product.productName}</h2>
             <h3 className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</h3>
             <p className="font-bold mb-3">${product.price}</p>
+
             <div className="flex justify-end">
-              <LuCirclePlus className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg" />
+              <LuCirclePlus
+                onClick={() => handleAddToCart(product)}
+                className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"
+              />
             </div>
           </div>
         ))}
