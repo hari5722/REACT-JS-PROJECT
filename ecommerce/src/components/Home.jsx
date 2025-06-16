@@ -10,7 +10,6 @@ import BestSales from '../pages/BestSales'
 export default function Home() {
   return (
     <div>
-    
       <Carousel/>
       <Cards/>
       <Products/>

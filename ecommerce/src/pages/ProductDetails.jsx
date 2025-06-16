@@ -80,13 +80,14 @@ export default function ProductDetalis() {
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
               className="w-20 border rounded px-2 py-1"/>
-            <div className="">
+            </div>
+
+            <div className="mt-3">
                 <button
               onClick={handleAddToCart}
               className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800">
               Add To Cart
             </button>
-            </div>
           
           </div>
         </div>
