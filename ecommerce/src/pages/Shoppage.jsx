@@ -21,14 +21,18 @@ export default function Shoppage() {
     );
   };
 
-    const handleAddToCart = () => {
-      const productWithQty = { ...product, quantity: parseInt(quantity) };
-      addToCart(productWithQty);
-      toast.success(`Added ${quantity} item(s) to cart!`, {
-        position: "top-right",
-        autoClose: 3000,
-      });
-    };
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    toast.success("Product has been added to cart!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      pauseOnHover: true,
+      draggable: true,
+      closeOnClick: true,
+    });
+  };
+
   const filteredProducts = (data || []).filter((product) => {
     const matchCategory = filter === "all" || product.category === filter;
     const matchSearch = (product.productName?.toLowerCase() || "").includes(
@@ -95,7 +99,7 @@ export default function Shoppage() {
               )}
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-40">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 px-40">
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
