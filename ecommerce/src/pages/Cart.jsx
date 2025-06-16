@@ -20,11 +20,13 @@ export default function Cart() {
   };
 
   const decreaseQuantity = (index) => {
-    const updatedCart = cart.map((item, i) =>
-      i === index
-        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
-        : item
-    );
+    const updatedCart = cart
+      .map((item, i) =>
+        i === index
+          ? { ...item, quantity: (item.quantity || 1) - 1 }
+          : item
+      )
+      .filter(item => item.quantity > 0); // Remove items with quantity 0
     setCart(updatedCart);
   };
 
