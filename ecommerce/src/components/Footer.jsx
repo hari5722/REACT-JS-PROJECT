@@ -12,7 +12,6 @@ export default function Footer() {
             Lorem ipsum dolor sit amet, <br/>consectetur adipiscing elit.<br/> Auctor libero id et, in<br/> gravida. Sit diam duis<br/> mauris nulla cursus. Erat et<br/> lectus vel ut sollicitudin elit<br/> at amet.
           </p>
         </div>
-
         <div>
           <h3 className="text-lg font-semibold mb-3">About Us</h3>
           <ul className="space-y-2 text-sm text-gray">
@@ -23,7 +22,6 @@ export default function Footer() {
             <li>Privacy Policy</li>
           </ul>
         </div>
-
         <div>
           <h3 className="text-lg font-semibold mb-3">Customer Care</h3>
           <ul className="space-y-2 text-sm text-gray">

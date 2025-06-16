@@ -26,8 +26,8 @@ export default function Cart() {
           ? { ...item, quantity: (item.quantity || 1) - 1 }
           : item
       )
-      .filter(item => item.quantity > 0); // Remove items with quantity 0
-    setCart(updatedCart);
+      .filter(item => item.quantity > 0); 
+      setCart(updatedCart);
   };
 
   const calculateTotal = () => {

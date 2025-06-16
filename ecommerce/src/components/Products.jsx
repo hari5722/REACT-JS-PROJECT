@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Products() {
   const navigate = useNavigate(); 
   const { addToCart } = useContext(globalContext);
-
  const handleAddToCart = (item) => {
   addToCart(item);
   toast.success("Product has been added to cart!", {
@@ -30,11 +29,9 @@ export default function Products() {
           <div
             key={item.id}
             className="relative bg-white shadow rounded-xl p-4 transform transition duration-200 hover:-translate-y-2 group">
-
             <span className="absolute top-2 left-2  bg-primary text-white text-xs px-2 py-1 rounded-full">
               {item.discount}% OFF
             </span>
-
             <Link to={`/product/${item.id}`}>
               <img
                 src={item.imgUrl}
@@ -42,11 +39,9 @@ export default function Products() {
                 className="w-full h-55 object-contain mb-3"
               />
             </Link>
-
             <h2 className="text-lg font-semibold text-left">{item.productName}</h2>
             <p className="text-yellow-500 text-lg text-left">⭐⭐⭐⭐⭐</p>
             <p className="text-black font-bold text-left">${item.price}</p>
-
             <div className="flex justify-end">
               <LuCirclePlus
                 onClick={() =>handleAddToCart(item)}

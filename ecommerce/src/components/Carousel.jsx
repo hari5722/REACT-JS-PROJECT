@@ -3,12 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
-
 import sofaSlide from "../images/hero-img.png";
 import phone08 from "../images/phone-08.png";
 import wireless01 from "../images/wireless-01.png";
 import watchSlide from "../images/watch-07.png";
-
 export default function Carousel() {
   const slides = [
     {
@@ -42,8 +40,7 @@ export default function Carousel() {
       modules={[Autoplay]}
       autoplay={{ delay: 2000 }}
       loop={true}
-      className="mySwiper"
-    >
+      className="mySwiper">
       {slides.map((slide) => (
         <SwiperSlide key={slide.id}>
           <div className="flex items-center justify-between px-45 py-10 bg-gray-100">

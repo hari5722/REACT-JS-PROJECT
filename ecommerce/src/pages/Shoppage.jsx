@@ -20,7 +20,6 @@ export default function Shoppage() {
       prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
     );
   };
-
   const handleAddToCart = (item) => {
     addToCart(item);
     toast.success("Product has been added to cart!", {
@@ -32,7 +31,6 @@ export default function Shoppage() {
       closeOnClick: true,
     });
   };
-
   const filteredProducts = (data || []).filter((product) => {
     const matchCategory = filter === "all" || product.category === filter;
     const matchSearch = (product.productName?.toLowerCase() || "").includes(
@@ -40,7 +38,6 @@ export default function Shoppage() {
     );
     return matchCategory && matchSearch;
   });
-
   return (
     <div className="p-6 sm:p-10 md:p-20 lg:p-10">
       <div className="relative bg-cover bg-center h-60 w-full mb-10">
@@ -96,7 +93,6 @@ export default function Shoppage() {
           )}
         </div>
       </div>
-
       {filteredProducts.length === 0 ? (
         <p className="text-center font-bold text-5xl mt-20">Product Not Found !!</p>
       ) : (
@@ -116,7 +112,6 @@ export default function Shoppage() {
                   <HeartOutline className="h-6 w-6 text-gray-400 hover:text-black-500" />
                 )}
               </div>
-
               <Link to={`/product/${product.id}`}>
                 <img
                   src={product.imgUrl}
@@ -124,11 +119,9 @@ export default function Shoppage() {
                   className="mb-3 w-60 h-50 object-contain mx-auto"
                 />
               </Link>
-
               <h2 className="font-bold mb-2">{product.productName}</h2>
               <h3 className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</h3>
               <p className="font-bold mb-3">${product.price}</p>
-
               <div className="flex justify-end">
                 <LuCirclePlus
                   onClick={() => handleAddToCart(product)}

@@ -17,7 +17,6 @@ export default function NewArrivals() {
       prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
     );
   };
-
   const handleAddToCart = (item) => {
     addToCart(item);
     toast.success("Product has been added to cart!", {
@@ -32,11 +31,9 @@ export default function NewArrivals() {
   const filter = data.filter(
     (item) => item.category === "mobile" || item.category === "wireless"
   );
-
   return (
     <div className="text-center">
       <h1 className="text-2xl font-bold m-5 p-5">New Arrivals</h1>
-
       <div className="container">
       <div className="flex flex-wrap justify-center gap-5 mb-5">
           {filter.map((item) => (
@@ -53,7 +50,6 @@ export default function NewArrivals() {
                   <HeartOutline className="h-6 w-6 text-gray-400 hover:text-black-500" />
                 )}
               </div>
-
               <Link to={`/product/${item.id}`}>
                 <img
                   src={item.imgUrl}
@@ -61,13 +57,11 @@ export default function NewArrivals() {
                   className="w-full h-60 object-contain mb-3 rounded"
                 />
               </Link>
-
               <h2 className="text-lg font-semibold text-left">
                 {item.productName}
               </h2>
               <p className="text-yellow-500 text-left">⭐⭐⭐⭐⭐</p>
               <p className="text-black font-bold text-left">${item.price}</p>
-
               <div className="flex justify-end mt-2">
                 <LuCirclePlus
                   onClick={() => handleAddToCart(item)}

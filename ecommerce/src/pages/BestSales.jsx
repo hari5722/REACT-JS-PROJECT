@@ -24,8 +24,6 @@ export default function BestSales() {
     closeOnClick: true,
   });
 };
-
-
   return (
     <div className="px-50">
       <h2 className="text-2xl font-bold text-center m-6 p-5">Best Sales</h2>

@@ -7,8 +7,6 @@ import { globalContext } from '../context/MyContext';
 
 export default function Header() {
   const { cart } = useContext(globalContext);
-  
-
   return (
     <header className="shadow-md border bg-white">
       <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
