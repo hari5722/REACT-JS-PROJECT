@@ -7,6 +7,7 @@ import { globalContext } from '../context/MyContext';
 
 export default function Header() {
   const { cart } = useContext(globalContext);
+  
 
   return (
     <header className="shadow-md border bg-white">
@@ -33,8 +34,8 @@ export default function Header() {
           <div className="relative">
             <Link to="/cart">
               <ImCart className="text-3xl hover:text-black-600 cursor-pointer text-black" />
-              {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {cart && cart.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-blue-900 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   {cart.length}
                 </span>
               )}

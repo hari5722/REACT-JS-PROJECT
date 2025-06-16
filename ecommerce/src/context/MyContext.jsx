@@ -8,6 +8,7 @@ export default function MyContext({ children }) {
   const [discountData, setDiscountData] = useState([]);
   const [cart, setCart] = useState([]);
 
+
   const fetchData = () => {
     setData(products);
     setDiscountData(discoutProducts);
@@ -18,23 +19,11 @@ export default function MyContext({ children }) {
   }, []);
 
   const addToCart = (item) => {
-    setCart((prev) => {
-      const existingIndex = prev.findIndex(p => p.id === item.id);
-      if (existingIndex !== -1) {
-        const updatedCart = [...prev];
-        updatedCart[existingIndex] = {
-          ...updatedCart[existingIndex],
-          quantity: (updatedCart[existingIndex].quantity || 1) + (item.quantity || 1),
-        };
-        return updatedCart;
-      } else {
-        return [...prev, { ...item, quantity: item.quantity || 1 }];
-      }
-    });
+    setCart((prev) => [...prev, item]);
   };
 
   return (
-    <globalContext.Provider value={{ data, discountData, cart, addToCart, setCart }}>
+    <globalContext.Provider value={{ data, discountData, cart, addToCart,cart,setCart }}>
       {children}
     </globalContext.Provider>
   );
