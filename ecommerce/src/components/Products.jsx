@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { discountProducts } from "../js files/discountData";
 import { LuCirclePlus } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineHeart } from "react-icons/ai";
 import { globalContext } from "../context/MyContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +22,6 @@ export default function Products() {
     closeOnClick: true,
   });
 };
-
   return (
     <div className="text-center">
       <h1 className="text-2xl font-bold mb-5">Big Discount</h1>
@@ -31,13 +29,9 @@ export default function Products() {
         {discountProducts.map((item) => (
           <div
             key={item.id}
-            className="relative bg-white shadow rounded-xl p-4 transform transition duration-200 hover:-translate-y-2 group"
-          >
-            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer text-red-500">
-              <AiOutlineHeart size={24} />
-            </div>
+            className="relative bg-white shadow rounded-xl p-4 transform transition duration-200 hover:-translate-y-2 group">
 
-            <span className="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 rounded-full">
+            <span className="absolute top-2 left-2  bg-primary text-white text-xs px-2 py-1 rounded-full">
               {item.discount}% OFF
             </span>
 

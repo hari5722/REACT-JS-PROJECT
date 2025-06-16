@@ -7,7 +7,6 @@ import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export default function NewArrivals() {
   const { data, addToCart } = useContext(globalContext);
   const [likedItems, setLikedItems] = useState([]);
@@ -39,7 +38,7 @@ export default function NewArrivals() {
       <h1 className="text-2xl font-bold m-5 p-5">New Arrivals</h1>
 
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 px-5 py-10">
+      <div className="flex flex-wrap justify-center gap-5 mb-5">
           {filter.map((item) => (
             <div
               key={item.id}
