@@ -31,16 +31,15 @@ export default function Header() {
           <span className="hover:text-black-600 cursor-pointer text-3xl">
             <IoMdContact />
           </span>
-          <div className="relative">
-            <Link to="/cart">
-              <ImCart className="text-3xl hover:text-black-600 cursor-pointer text-black" />
-              {cart && cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-blue-900 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                  {cart.length}
-                </span>
-              )}
-            </Link>
-          </div>
+         <div className="relative">
+  <Link to="/cart">
+    <ImCart className="text-3xl hover:text-black-600 cursor-pointer text-black" />
+    <span className="absolute -top-2 -right-2 bg-blue-900 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+      {cart ? cart.length : 0}
+    </span>
+  </Link>
+</div>
+
         </div>
       </nav>
     </header>

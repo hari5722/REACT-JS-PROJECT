@@ -7,13 +7,11 @@ export default function MyContext({ children }) {
   const [data, setData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
   const [cart, setCart] = useState([]);
-
-
+  
   const fetchData = () => {
     setData(products);
     setDiscountData(discoutProducts);
   };
-
   useEffect(() => {
     fetchData();
   }, []);
