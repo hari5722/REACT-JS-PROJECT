@@ -38,8 +38,8 @@ export default function Cart() {
   return (
     <div className="p-10">
       <div className="flex justify-between items-start">
-        <div className="w-1/3 ms-250 pl-5">
-          <div className="border rounded-lg shadow-lg p-6 bg-white">
+        <div className="w-1/3 ms-250 pl-4">
+          <div className="border rounded-lg shadow-lg p-5 bg-white">
             <h2 className="text-2xl font-bold mb-2">Cart Summary</h2>
             <hr className="mb-4" />
             <div className="justify-between">
@@ -54,9 +54,12 @@ export default function Cart() {
       </div>
 
       {cart.length === 0 ? (
-        <p className="font-bold text-5xl text-center text-red-500">
-          Your cart is empty.
+        <div className="border -mt-50 w-220 h-55 me-5 rounded-lg shadow-lg p-5 bg-white">
+      
+        <p className="font-bold text-2xl ">
+          No Items are add in cart
         </p>
+         </div>
       ) : (
         <div className="space-y-55 col-1">
           {cart.map((item, index) => (
@@ -68,8 +71,7 @@ export default function Cart() {
                 <div className="ps-210">
                   <button
                     onClick={() => removeItem(index)}
-                    className="text-black-500 hover:text-white-700 font-semibold"
-                  >
+                    className="text-black-500 hover:text-white-700 font-semibold">
                     <h3>
                       <MdOutlineClear />
                     </h3>
@@ -79,8 +81,7 @@ export default function Cart() {
                   <img
                     src={item.imgUrl}
                     alt={item.productName}
-                    className="w-50 h-25 object-cover rounded"
-                  />
+                    className="w-35 h-25 object-cover rounded"/>
                   <span className="font-bold text-xl mb-20">
                     {item.productName}
                   </span>
@@ -91,21 +92,21 @@ export default function Cart() {
                     <span className="mx-1"> * </span>
                     <span className="text-grey-100">{item.quantity || 1}</span>
                     <span className="text-blue-900 font-bold ms-3 ">
-                      ${(item.price * (item.quantity || 0))}
+                      ${(item.price * (item.quantity || 0))}.00
                     </span>
                   </span>
 
-                  <div className="flex pl-155 gap-3">
+                  <div className="flex pl-175 -py-50 gap-2">
                     <button
-                      className="border rounded h-10"
+                      className="border rounded h-6"
                       onClick={() => increaseQuantity(index)}>
-                      <FaPlus size={30} />
+                      <FaPlus size={20} />
                     </button>
                     <button
-                      className="border rounded h-10 bg-gray-200"
+                      className="border rounded h-6 bg-gray-200"
                       onClick={() => decreaseQuantity(index)}
                     >
-                      <TiMinus size={30} />
+                      <TiMinus size={20} />
                     </button>
                   </div>
                 </div>

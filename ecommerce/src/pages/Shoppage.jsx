@@ -1,14 +1,15 @@
 import React, { useState, useContext } from "react";
 import { globalContext } from "../context/MyContext";
 import { LuCirclePlus } from "react-icons/lu";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import bannerImage from "../images/table.jpg";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Shoppage() {
   const { data, addToCart } = useContext(globalContext);
-  const navigate = useNavigate();
 
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
@@ -20,11 +21,14 @@ export default function Shoppage() {
     );
   };
 
-  const handleAddToCart = (item) => {
-    addToCart(item);
-    navigate("/cart");
-  };
-
+    const handleAddToCart = () => {
+      const productWithQty = { ...product, quantity: parseInt(quantity) };
+      addToCart(productWithQty);
+      toast.success(`Added ${quantity} item(s) to cart!`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    };
   const filteredProducts = (data || []).filter((product) => {
     const matchCategory = filter === "all" || product.category === filter;
     const matchSearch = (product.productName?.toLowerCase() || "").includes(
@@ -36,20 +40,21 @@ export default function Shoppage() {
   return (
     <div className="p-6 sm:p-10 md:p-20 lg:p-10">
       {filteredProducts.length === 0 ? (
-        <p className="text-center text-red-500 font-bold text-5xl">No items found</p>
+        <p className="text-center font-bold text-5xl">Product Not Found !!</p>
       ) : (
         <>
           <div className="relative bg-cover bg-center h-60 w-full">
-  <img
-    src={bannerImage}
-    alt="Banner"
-    className="w-full h-full object-cover"
-  />
-  <h1 className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
-    Product
-  </h1>
-</div>
-          <div className="flex flex-wrap justify-between items-center mt-30 mb-20 gap-4 px-5 ">
+            <img
+              src={bannerImage}
+              alt="Banner"
+              className="w-full h-full object-cover"
+            />
+            <h1 className="absolute inset-0 flex items-center justify-center text-white text-3xl font-bold">
+              Product
+            </h1>
+          </div>
+
+          <div className="flex flex-wrap justify-between items-center mt-30 mb-20 gap-4 px-5">
             <select
               onChange={(e) => setFilter(e.target.value)}
               className="p-2 border rounded-md hover:bg-blue-800 hover:text-white bg-blue-600 text-white"
@@ -107,11 +112,15 @@ export default function Shoppage() {
                     <HeartOutline className="h-6 w-6 text-gray-400 hover:text-black-500" />
                   )}
                 </div>
-                <Link to={`/product/${product.id}`}><img
-                  src={product.imgUrl}
-                  alt={product.productName}
-                  className="mb-3 w-60 h-50 object-contain mx-auto"
-                /></Link> 
+
+                <Link to={`/product/${product.id}`}>
+                  <img
+                    src={product.imgUrl}
+                    alt={product.productName}
+                    className="mb-3 w-60 h-50 object-contain mx-auto"
+                  />
+                </Link>
+
                 <h2 className="font-bold mb-2">{product.productName}</h2>
                 <h3 className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</h3>
                 <p className="font-bold mb-3">${product.price}</p>

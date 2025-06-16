@@ -4,15 +4,25 @@ import { LuCirclePlus } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import { globalContext } from "../context/MyContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function Products() {
   const navigate = useNavigate(); 
   const { addToCart } = useContext(globalContext);
 
-  const handleGoToCart = (item) => {
-    addToCart(item);
-    navigate("/cart");
-  };
+ const handleAddToCart = (item) => {
+  addToCart(item);
+  toast.success("Product has been added to cart!", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    pauseOnHover: true,
+    draggable: true,
+    closeOnClick: true,
+  });
+};
 
   return (
     <div className="text-center">
@@ -45,7 +55,7 @@ export default function Products() {
 
             <div className="flex justify-end">
               <LuCirclePlus
-                onClick={() => handleGoToCart(item)}
+                onClick={() =>handleAddToCart(item)}
                 className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"
               />
             </div>

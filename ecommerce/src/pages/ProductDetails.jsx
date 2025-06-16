@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { globalContext } from "../context/MyContext";
 import bannerImage from "../images/table.jpg";
 import { LuCirclePlus } from "react-icons/lu";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ProductDetalis() {
   const { discountData, data, addToCart } = useContext(globalContext);
   const { id } = useParams();
-  const navigate = useNavigate();
   const [showReviews, setShowReviews] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const allProducts = [...(discountData || []), ...(data || [])];
   const product = allProducts.find((item) => String(item.id) === String(id));
@@ -24,8 +26,12 @@ export default function ProductDetalis() {
   }
 
   const handleAddToCart = () => {
-    addToCart(product);         
-    navigate("/cart");          
+    const productWithQty = { ...product, quantity: parseInt(quantity) };
+    addToCart(productWithQty);
+    toast.success(`Added ${quantity} item(s) to cart!`, {
+      position: "top-right",
+      autoClose: 3000,
+    });
   };
 
   return (
@@ -43,17 +49,15 @@ export default function ProductDetalis() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        {/* <Link to="/BestSales"> */}
-          <img
-            src={product.imgUrl}
-            alt={product.productName}
-            className="w-full max-w-md mx-auto hover:scale-105 duration-300"
-          />
-        {/* </Link> */}
+      <div className="grid md:grid-cols-2 gap-8 items-center mt-5">
+        <img
+          src={product.imgUrl}
+          alt={product.productName}
+          className="w-full max-w-md mx-auto hover:scale-105 duration-300"
+        />
         <div>
           <h2 className="text-2xl font-semibold">{product.productName}</h2>
-          <div className="flex items-center gap-2 text-yellow-400">
+          <div className="flex items-center gap-2 text-yellow-400 mt-1">
             <span>⭐⭐⭐⭐⭐</span>
             <span className="text-gray-700 ml-2">
               {product.avgRating} ratings
@@ -69,21 +73,21 @@ export default function ProductDetalis() {
 
           <p className="text-gray-600 mt-4">{product.shortDesc}</p>
 
-          <div className="mt-4 gap-2 items-center">
+          <div className="mt-4 flex items-center gap-4">
             <input
               type="number"
-              defaultValue={1}
               min={1}
-              className="w-16 border rounded px-2 py-1"
-            />
-            <div className="mt-3">
-              <button
-                onClick={handleAddToCart} 
-                className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800"
-              >
-                Add To Cart
-              </button>
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              className="w-20 border rounded px-2 py-1"/>
+            <div className="">
+                <button
+              onClick={handleAddToCart}
+              className="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800">
+              Add To Cart
+            </button>
             </div>
+          
           </div>
         </div>
       </div>
@@ -95,12 +99,12 @@ export default function ProductDetalis() {
             onClick={() => setShowReviews(!showReviews)}
             className="ml-4 text-black-600 p-3"
           >
-            Reviews(2)
+            Reviews (2)
           </button>
         </div>
         <p className="text-black-500 font-bold">{product.description}</p>
         {showReviews && (
-          <div className="text-black-600">
+          <div className="text-black-600 mt-4">
             <p className="text-yellow-500 font-bold">Hari</p>
             <p>4.6</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
@@ -111,9 +115,9 @@ export default function ProductDetalis() {
         )}
       </div>
 
-      <div className="p-35">
-        <h2 className="text-xl font-bold mb-6">You might also like</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 p-10">
+      <div className="mt-16">
+        <h2 className="text-xl font-bold mb-5 ml-25">You might also like</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 ml-40 gap-6 w-280 p-4">
           {allProducts
             .filter(
               (item) =>
@@ -123,8 +127,7 @@ export default function ProductDetalis() {
             .map((item) => (
               <div
                 key={item.id}
-                className="border p-4 rounded shadow hover:shadow-lg transition"
-              >
+                className="border p-4 rounded shadow hover:shadow-lg transition">
                 <Link to={`/product/${item.id}`}>
                   <img
                     src={item.imgUrl}
@@ -141,8 +144,11 @@ export default function ProductDetalis() {
                 <div className="flex justify-end">
                   <LuCirclePlus
                     onClick={() => {
-                      addToCart(item);      
-                      navigate("/cart");  
+                      addToCart({ ...item, quantity: 1 });
+                      toast.success(" Product has been added to cart!", {
+                        position: "top-right",
+                        autoClose: 3000,
+                      });
                     }}
                     className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"
                   />

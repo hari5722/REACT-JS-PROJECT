@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { globalContext } from "../context/MyContext";
 import { LuCirclePlus } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function BestSales() {
   const { data, addToCart } = useContext(globalContext);
@@ -11,10 +13,18 @@ export default function BestSales() {
     (item) => item.category === "sofa" || item.category === "watch"
   );
 
-  const handleAddToCart = (item) => {
-    addToCart(item); 
-    navigate("/cart");
-  };
+ const handleAddToCart = (item) => {
+  addToCart(item);
+  toast.success("Product has been added to cart!", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    pauseOnHover: true,
+    draggable: true,
+    closeOnClick: true,
+  });
+};
+
 
   return (
     <div className="px-50">

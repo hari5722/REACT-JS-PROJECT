@@ -4,6 +4,9 @@ import { LuCirclePlus } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
 import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function NewArrivals() {
   const { data, addToCart } = useContext(globalContext);
@@ -17,10 +20,16 @@ export default function NewArrivals() {
   };
 
   const handleAddToCart = (item) => {
-    addToCart(item); 
-    navigate("/cart"); 
+    addToCart(item);
+    toast.success("Product has been added to cart!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      pauseOnHover: true,
+      draggable: true,
+      closeOnClick: true,
+    });
   };
-
   const filter = data.filter(
     (item) => item.category === "mobile" || item.category === "wireless"
   );
