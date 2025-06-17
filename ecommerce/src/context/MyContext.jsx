@@ -2,24 +2,38 @@ import React, { createContext, useEffect, useState } from 'react';
 import { discoutProducts, products } from '../js files/product';
 
 export const globalContext = createContext();
+
 export default function MyContext({ children }) {
   const [data, setData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
   const [cart, setCart] = useState([]);
-  
+
   const fetchData = () => {
     setData(products);
     setDiscountData(discoutProducts);
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const addToCart = (item) => {
-    setCart((prev) => [...prev, item]);
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+      if (existingItem) {
+        return prevCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, { ...item, quantity: 1 }];
+      }
+    });
   };
+
   return (
-    <globalContext.Provider value={{ data, discountData, cart, addToCart,cart,setCart }}>
+    <globalContext.Provider value={{ data, discountData, cart, addToCart, setCart }}>
       {children}
     </globalContext.Provider>
   );

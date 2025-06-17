@@ -47,11 +47,11 @@ const features = [
 ];
 export default function InfoCards() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 p-15">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 bg-white p-15">
       {features.map((feature, index) => (
         <div
           key={index}
-            className={`text-center p-3 rounded shadow ${feature.bgColor} transform transition duration-200 hover:-translate-y-2 hover:-translate-x-2`}>
+            className={`text-center p-3  shadow ${feature.bgColor} transform transition duration-200 hover:-translate-y-2 hover:-translate-x-2`}>
           <div className="flex justify-center mb-2">{feature.icon}</div>
           <h3 className="font-semibold">{feature.title}</h3>
           <p className="text-lg text-gray-700">{feature.description}</p>

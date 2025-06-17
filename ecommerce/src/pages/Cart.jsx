@@ -38,7 +38,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="p-10">
+    <div className="p-20">
       <div className="flex justify-between items-start">
         <div className="w-1/3 ms-250 pl-4">
           <div className="border rounded-lg shadow-lg p-5 bg-white">
@@ -89,11 +89,11 @@ export default function Cart() {
                   </span>
                 </div>
 
-                <div className="text-center px-20 mt-4">
+                <div className="text-center px-20 mt-4 text-secondary">
                   <span className="font-semibold ms-45">
-                    <span className="text-grey-100">{item.quantity || 1}</span>
-                    {" x "}
-                    <span className="text-grey-200">${item.price}</span>
+                    <span className="text-grey-100">{item.price}.00</span>
+                    {" * "}
+                    <span className="text-grey-200">{item.quantity||1}</span>
                     {" "}
                     <span className="text-blue-900 font-bold ms-2">
                       ${(item.price * (item.quantity || 1)).toFixed(2)}

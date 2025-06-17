@@ -39,7 +39,7 @@ export default function Shoppage() {
     return matchCategory && matchSearch;
   });
   return (
-    <div className="p-6 sm:p-10 md:p-20 lg:p-10">
+    <div className=" p-6 sm:p-10 md:p-20 lg:p-10">
       <div className="relative bg-cover bg-center h-60 w-full mb-10">
         <img
           src={bannerImage}
@@ -55,12 +55,11 @@ export default function Shoppage() {
         <select
           onChange={(e) => setFilter(e.target.value)}
           value={filter}
-          className="p-2 border rounded-md hover:bg-blue-800 hover:text-white bg-blue-600 text-white"
-        >
+          className="p-2 border rounded-md hover:bg-black-800 hover:text-white bg-blue-600 text-white">
           <option value="all">Filter By Category</option>
           <option value="sofa">Sofa</option>
           <option value="chair">Chair</option>
-          <option value="wireless">HeadPhones</option>
+          <option value="wireless">wireless</option>
           <option value="mobile">Mobile</option>
           <option value="watch">Watch</option>
         </select>
@@ -94,18 +93,18 @@ export default function Shoppage() {
         </div>
       </div>
       {filteredProducts.length === 0 ? (
-        <p className="text-center font-bold text-5xl mt-20">Product Not Found !!</p>
+        <p className="text-center font-bold text-5xl">Product Not Found !!</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-40">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="relative border rounded-lg p-5 shadow transform transition duration-200 hover:-translate-y-2"
+              className="relative border rounded-md p-5 shadow transform transition duration-200 hover:-translate-y-2"
             >
               <div
                 className="absolute top-3 right-3 cursor-pointer"
-                onClick={() => toggleLike(product.id)}
-              >
+                onClick={() => toggleLike(product.id)}>
+
                 {likedItems.includes(product.id) ? (
                   <HeartSolid className="h-6 w-6 text-black-500" />
                 ) : (
@@ -116,8 +115,7 @@ export default function Shoppage() {
                 <img
                   src={product.imgUrl}
                   alt={product.productName}
-                  className="mb-3 w-60 h-50 object-contain mx-auto"
-                />
+                  className="mb-3 w-60 h-50 object-contain mx-auto"/>
               </Link>
               <h2 className="font-bold mb-2">{product.productName}</h2>
               <h3 className="text-yellow-500 mb-2">⭐⭐⭐⭐⭐</h3>
@@ -125,8 +123,7 @@ export default function Shoppage() {
               <div className="flex justify-end">
                 <LuCirclePlus
                   onClick={() => handleAddToCart(product)}
-                  className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"
-                />
+                  className="text-5xl cursor-pointer rounded-full p-2 transition duration-200 hover:bg-blue-500 hover:text-white hover:shadow-lg"/>
               </div>
             </div>
           ))}

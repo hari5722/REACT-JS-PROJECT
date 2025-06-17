@@ -114,9 +114,9 @@ export default function ProductDetalis() {
         )}
       </div>
 
-      <div className="mt-16">
+      <div className="mt-12 p-20">
         <h2 className="text-xl font-bold mb-5 ml-25">You might also like</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 ml-40 gap-6 w-280 p-4">
+        <div className="grid sm:grid-cols-1 lg:gird-cols-2 md:grid-cols-3 ml-40 gap-6 w-280 p-4">
           {allProducts
             .filter(
               (item) =>

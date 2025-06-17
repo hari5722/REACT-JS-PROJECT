@@ -24,7 +24,7 @@ export default function Products() {
   return (
     <div className="text-center">
       <h1 className="text-2xl font-bold mb-5">Big Discount</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-60">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-60 ">
         {discountProducts.map((item) => (
           <div
             key={item.id}

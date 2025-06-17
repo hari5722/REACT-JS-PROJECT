@@ -8,7 +8,7 @@ import { globalContext } from '../context/MyContext';
 export default function Header() {
   const { cart } = useContext(globalContext);
   return (
-    <header className="shadow-md border bg-white">
+    <header className="z-100 fixed w-full shadow-md border bg-white">
       <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center cursor-pointer space-x-2 text-xl font-bold">
           <IoBag className="text-3xl" />
@@ -37,7 +37,6 @@ export default function Header() {
     </span>
   </Link>
 </div>
-
         </div>
       </nav>
     </header>
