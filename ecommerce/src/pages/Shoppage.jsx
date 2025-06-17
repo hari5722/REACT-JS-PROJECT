@@ -95,6 +95,7 @@ export default function Shoppage() {
       {filteredProducts.length === 0 ? (
         <p className="text-center font-bold text-5xl">Product Not Found !!</p>
       ) : (
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-40">
           {filteredProducts.map((product) => (
             <div

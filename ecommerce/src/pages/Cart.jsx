@@ -26,8 +26,8 @@ export default function Cart() {
           ? { ...item, quantity: (item.quantity || 1) - 1 }
           : item
       )
-      .filter(item => item.quantity > 0); 
-      setCart(updatedCart);
+      .filter(item => item.quantity > 0);
+    setCart(updatedCart);
   };
 
   const calculateTotal = () => {
@@ -57,7 +57,7 @@ export default function Cart() {
 
       {cart.length === 0 ? (
         <div className="border -mt-50 w-220 h-55 me-5 rounded-lg shadow-lg p-5 bg-white">
-          <p className="font-bold text-2xl">No Items are add in cart</p>
+          <p className="font-bold text-2xl">No Items are added in cart</p>
         </div>
       ) : (
         <div className="space-y-55 col-1">
@@ -71,10 +71,9 @@ export default function Cart() {
                   <button
                     onClick={() => removeItem(index)}
                     className="text-black-500 hover:text-white-700 font-semibold"
+                    aria-label={`Remove ${item.productName} from cart`}
                   >
-                    <h3>
-                      <MdOutlineClear />
-                    </h3>
+                    <MdOutlineClear />
                   </button>
                 </div>
 
@@ -91,9 +90,9 @@ export default function Cart() {
 
                 <div className="text-center px-20 mt-4 text-secondary">
                   <span className="font-semibold ms-45">
-                    <span className="text-grey-100">{item.price}.00</span>
+                    <span className="text-grey-100">${item.price}.00</span>
                     {" * "}
-                    <span className="text-grey-200">{item.quantity||1}</span>
+                    <span className="text-grey-200">{item.quantity || 1}</span>
                     {" "}
                     <span className="text-blue-900 font-bold ms-2">
                       ${(item.price * (item.quantity || 1)).toFixed(2)}
@@ -104,12 +103,14 @@ export default function Cart() {
                     <button
                       className="border rounded h-6"
                       onClick={() => increaseQuantity(index)}
+                      aria-label={`Increase quantity of ${item.productName}`}
                     >
                       <FaPlus size={20} />
                     </button>
                     <button
                       className="border rounded h-6 bg-gray-200"
                       onClick={() => decreaseQuantity(index)}
+                      aria-label={`Decrease quantity of ${item.productName}`}
                     >
                       <TiMinus size={20} />
                     </button>

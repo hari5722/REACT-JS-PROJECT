@@ -6,7 +6,16 @@ export const globalContext = createContext();
 export default function MyContext({ children }) {
   const [data, setData] = useState([]);
   const [discountData, setDiscountData] = useState([]);
-  const [cart, setCart] = useState([]);
+
+  const [cart, setCart] = useState(() => {
+    try {
+      const savedCart = localStorage.getItem('cart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error('Failed to parse cart from localStorage:', error);
+      return [];
+    }
+  });
 
   const fetchData = () => {
     setData(products);
@@ -16,6 +25,10 @@ export default function MyContext({ children }) {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (item) => {
     setCart((prevCart) => {
